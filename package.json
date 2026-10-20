@@ -1,0 +1,42 @@
+{
+  "name": "@modelschedules/gantt",
+  "version": "2.1.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "./dist/modelschedules-gantt.umd.js",
+  "module": "./dist/modelschedules-gantt.mjs",
+  "types": "./index.d.ts",
+  "files": [
+    "dist",
+    "components",
+    "index.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/modelschedules-gantt.mjs",
+      "require": "./dist/modelschedules-gantt.umd.js"
+    },
+    "./style.css": "./dist/modelschedules-gantt.css"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "vue-tsc --noEmit",
+    "build": "npm run type-check && vite build",
+    "build:ci": "npm run type-check && vite build --mode production"
+  },
+  "dependencies": {
+    "vue": "^3.5.41"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/tsconfig": "^0.9.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.2",
+    "vite-plugin-css-injected-by-js": "^5.0.2",
+    "vite-plugin-dts": "^5.0.3",
+    "vue-tsc": "^3.3.11"
+  }
+}
