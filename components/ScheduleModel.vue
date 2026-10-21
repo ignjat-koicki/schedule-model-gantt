@@ -189,7 +189,7 @@ export default defineComponent({
     const firstStart = schedules.reduce((earliest, schedule) => {
       const scheduleStart = new Date(schedule.StartDate);
       return scheduleStart < earliest ? scheduleStart : earliest;
-    }, new Date(schedules[0].StartDate));
+    }, schedules.length ? new Date(schedules[0].StartDate) : today);
     return {
       sampleSchedules,
       collapsedCategories: new Set<string>(),
