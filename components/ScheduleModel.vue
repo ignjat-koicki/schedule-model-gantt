@@ -159,18 +159,6 @@ type RoadmapRow =
   | { key: string; type: "task"; schedule: ScheduleModel; child: boolean };
 
 const today = new Date();
-const sampleSchedules: ScheduleModel[] = [
-  {
-    Id: 1,
-    CategoryName: "Planning",
-    ParentId: 0,
-    Name: "Requirements and discovery",
-    Description: "",
-    StartDate: new Date(today.getFullYear(), today.getMonth(), 2),
-    EndDate: new Date(today.getFullYear(), today.getMonth(), 8),
-    Complete: 100,
-  },
-];
 const dayMs = 24 * 60 * 60 * 1000;
 const zoomOptions: { label: string; value: Zoom }[] = [
   { label: "Weeks", value: "weeks" },
@@ -185,13 +173,12 @@ export default defineComponent({
   },
   emits: ["taskClick"],
   data() {
-    const schedules = this.schedules.length ? this.schedules : sampleSchedules;
+    const schedules = this.schedules.length ? this.schedules : [];
     const firstStart = schedules.reduce((earliest, schedule) => {
       const scheduleStart = new Date(schedule.StartDate);
       return scheduleStart < earliest ? scheduleStart : earliest;
     }, schedules.length ? new Date(schedules[0].StartDate) : today);
     return {
-      sampleSchedules,
       collapsedCategories: new Set<string>(),
       zoom: "months" as Zoom,
       cursor: new Date(firstStart.getFullYear(), firstStart.getMonth(), 1),
@@ -200,7 +187,7 @@ export default defineComponent({
   },
   computed: {
     displaySchedules(): ScheduleModel[] {
-      return this.schedules.length ? this.schedules : sampleSchedules;
+      return this.schedules.length ? this.schedules : [];
     },
     roadmapRows(): RoadmapRow[] {
       const rows: RoadmapRow[] = [],
